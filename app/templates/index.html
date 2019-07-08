@@ -84,18 +84,19 @@
 		</div>
 	</div>
 	<script>
-    var rotatebox=document.getElementById('rotate-box');
-    var rotbox = new Hammer(rotatebox);
-    rotbox.get('rotate').set({enable:true});
-    rotbox.on("rotate", function(event){
-              rotbox.style.background = "red"
-              });
-    var pinchbox=document.getElementById('pinch-box');
+    var rotbox = document.getElementById('rotate-box');
+    var rot = new Hammer(rotbox);
+    rot.get('rotate').set({enable:true});
+    rot.on("rotatemove",function(event){
+      $(rotbox).css('background','red');
+    });
+    
+    var pinchbox = document.getElementById('pinch-box');
     var pinbox = new Hammer(pinchbox);
-    rotbox.get('pinch').set({enable:true});
-    rotbox.on("pinch", function(event){
-              pinbox.style.background = "red"
-              });
+    pinbox.get('pinch').set({enable:true});
+    pinbox.on("pinchout",function(event){
+      $(pinchbox).css('background','red');
+    })
     
     var pressbox = document.getElementById('press-box');
   Hammer(pressbox).on("press", function(event) {
